@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using JwtAspNetCoreWebApi.Models;
 using JwtAspNetCoreWebApi.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +18,14 @@ namespace JwtAspNetCoreWebApi.Controllers
         {
             _userservice = userService;
         }
-         
+
+        [HttpPost("register")]
+        public async Task<ActionResult> RegisterAsync(RegisterModel model)
+        {
+            var result = await _userservice.RegisterAsync(model);
+            return Ok(result);
+        }
+
 
     }
 }
